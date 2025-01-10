@@ -1,8 +1,10 @@
 import { View, Text, SafeAreaView, Image, Alert } from 'react-native'
+import { router } from 'expo-router';
 import images from '../../constant/images'
 import React, { useState } from 'react'
 import FormField from '../../components/FormField';
 import CustomButton from '../../components/CustomButton';
+import SecondaryButton from '../../components/SecondaryButton';
 
 const Login = () => {
   const [ form, setForm ] = useState({
@@ -41,6 +43,7 @@ const Login = () => {
           additionalStyle="w-full p-[6px]"
         />
         <CustomButton title='Submit' onPress={submit}/>
+        <SecondaryButton containerStyle={'px-2'} title="Sign up" handlePress={() => router.push('/sign-up')}/>
         </View>
       </View>
     </SafeAreaView>
