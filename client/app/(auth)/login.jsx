@@ -1,8 +1,7 @@
 import { View, Text, SafeAreaView, Image } from 'react-native'
-import { router } from 'expo-router';
-import images from '../constant/images'
+import images from '../../constant/images'
 import React, { useState } from 'react'
-import CustomButton from '../components/CustomButton';
+import FormField from '../../components/FormField';
 
 const index = () => {
   const [ form, setForm ] = useState({
@@ -16,7 +15,21 @@ const index = () => {
         <Image source={images.locked} className="w-16 h-[100px] mb-10" resizeMethod='contain'/>
         <Text className="text-2xl text-white text-center font-semibold">Welcome to simple login testing</Text>
         <View className="items-center justify-center">
-            <CustomButton title={'Next'} onPress={() => router.push('./(auth)')}/>
+        <FormField 
+          title="Email"
+          value={form.email}
+          handleChangeText={(e) => setForm({...form, email: e})}
+          placeholder='Email'
+          additionalStyle="mt-7 w-full p-[6px]"
+        />
+        <FormField 
+          title="Password"
+          value={form.password}
+          handleChangeText={(e) => setForm({...form, password: e})}
+          placeholder='Password'
+          additionalStyle="w-full p-[6px]"
+        />
+        
         </View>
       </View>
     </SafeAreaView>
