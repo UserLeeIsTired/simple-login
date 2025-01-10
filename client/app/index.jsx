@@ -4,12 +4,7 @@ import images from '../constant/images'
 import React, { useState } from 'react'
 import CustomButton from '../components/CustomButton';
 
-const index = () => {
-  const [ form, setForm ] = useState({
-    email: '',
-    password: ''
-  });
-  
+const index = () => {  
   return (
     <SafeAreaView className="h-full w-full bg-black justify-center">
       <View className="items-center justify-center"> 
