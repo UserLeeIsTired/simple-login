@@ -11,7 +11,7 @@ const index = () => {
         <Image source={images.locked} className="w-16 h-[100px] mb-10" resizeMethod='contain'/>
         <Text className="text-2xl text-white text-center font-semibold">Welcome to simple login testing</Text>
         <View className="items-center justify-center">
-            <CustomButton title={'Next'} onPress={() => router.push('./(auth)')}/>
+            <CustomButton title='Next' onPress={() => router.push('./login')}/>
         </View>
       </View>
     </SafeAreaView>

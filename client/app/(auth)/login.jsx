@@ -1,19 +1,30 @@
-import { View, Text, SafeAreaView, Image } from 'react-native'
+import { View, Text, SafeAreaView, Image, Alert } from 'react-native'
 import images from '../../constant/images'
 import React, { useState } from 'react'
 import FormField from '../../components/FormField';
+import CustomButton from '../../components/CustomButton';
 
-const index = () => {
+const Login = () => {
   const [ form, setForm ] = useState({
     email: '',
     password: ''
   });
+
+  const submit = async () => {
+    console.log('hello');
+    if (!form.email || !form.email){
+      Alert.alert('Error', 'Please enter all fields!');
+      return;
+    }
+
+    // TODO: login function connect to database
+  }
   
   return (
     <SafeAreaView className="h-full w-full bg-black justify-center">
       <View className="items-center justify-center"> 
         <Image source={images.locked} className="w-16 h-[100px] mb-10" resizeMethod='contain'/>
-        <Text className="text-2xl text-white text-center font-semibold">Welcome to simple login testing</Text>
+        <Text className="text-2xl text-white text-center font-semibold">Login</Text>
         <View className="items-center justify-center">
         <FormField 
           title="Email"
@@ -29,11 +40,11 @@ const index = () => {
           placeholder='Password'
           additionalStyle="w-full p-[6px]"
         />
-        
+        <CustomButton title='Submit' onPress={submit}/>
         </View>
       </View>
     </SafeAreaView>
   )
 }
 
-export default index
+export default Login

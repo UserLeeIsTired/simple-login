@@ -3,8 +3,10 @@ import React from 'react'
 
 const CustomButton = ({ title, onPress }) => {
   return (
-    <TouchableOpacity className="bg-green-600 w-full p-2" onPress={onPress}>
-        <Text className="text-white">{title}</Text>
+    <TouchableOpacity className="bg-green-600 w-[98%] h-12 rounded-xl mt-5 p-[6px]" onPress={onPress}>
+        <View className="w-full">
+            <Text className="font-semibold text-lg text-center text-white">{title}</Text>
+        </View>
     </TouchableOpacity>
   )
 }
