@@ -25,7 +25,7 @@ const SignUp = () => {
         return;
     }
 
-    // TODO: sign-up function connect to database
+    // TODO: sign-up function connect to database (mariaDB)
   }
   
   return (
