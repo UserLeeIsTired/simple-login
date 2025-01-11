@@ -24,13 +24,5 @@ class DatabaseConnection:
         cur.execute("SELECT * FROM users")
         print(list(cur))
 
-    def close_connection(self):
-        self.conn.close()
-
-def main():
-    load_dotenv()
-    d = DatabaseConnection()
-    d.get_cursor()
-    d.close_connection()
-
-main()
+    # def close_connection(self):
+    #     self.conn.close()
