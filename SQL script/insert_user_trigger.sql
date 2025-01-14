@@ -5,7 +5,7 @@ BEGIN
     NEW.salt = md5(random()::text);
 
     -- Concatenate the password with the salt and hash the combined value
-    NEW.password_hash = md5(NEW.password || NEW.salt);
+    NEW.password_hash = md5(NEW.password_hash || NEW.salt);
 
     RETURN NEW;
 END;

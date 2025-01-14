@@ -30,7 +30,9 @@ class DatabaseService:
 
     def register_user(self, username, password):
         # use a trigger to create a salt, and hash the password + salt
-        self.cur.execute("INSERT INTO tl_user (username, salted_password) VALUES (%s, %s)", (username, password))
+        self.cur.execute("INSERT INTO tl_user (username, password_hash) VALUES (%s, %s)", (username, password))
+        self.conn.commit()
 
 d = DatabaseService()
+d.register_user('test', 'password')
 d.test()
