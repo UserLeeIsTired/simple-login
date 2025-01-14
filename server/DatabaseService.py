@@ -5,20 +5,32 @@ import os
 import psycopg2
 
 
-load_dotenv()
+class DatabaseService:
+    def __init__(self):
+        # get variables from .env file
+        load_dotenv()
 
-# Connect to your postgres DB
-conn = psycopg2.connect(database = os.getenv('DATABASE'), 
-                        user = os.getenv('USER'), 
-                        password = os.getenv('PASSWORD'), 
-                        host = os.getenv('HOST'), 
-                        port = int(os.getenv('PORT'))) # must convert to int from string
+        # Connect to your postgres DB
+        self.conn = psycopg2.connect(database = os.getenv('DATABASE'), 
+                                user = os.getenv('USER'), 
+                                password = os.getenv('PASSWORD'), 
+                                host = os.getenv('HOST'), 
+                                port = int(os.getenv('PORT'))) # Must convert to int from string
 
-# Open a cursor to perform database operations
-cur = conn.cursor()
+        # Open a cursor to perform database operations
+        self.cur = self.conn.cursor()
 
-# Execute a query
-cur.execute(f"SELECT * FROM {os.getenv('USER_TABLE')}")
+    def test(self):
+        # Execute a query
+        self.cur.execute(f"SELECT * FROM {os.getenv('USER_TABLE')}")
 
-# Retrieve query results
-records = cur.fetchall()
+        # Retrieve query results
+        records = self.cur.fetchall()
+        print(records)
+
+    def register_user(self, username, password):
+        # use a trigger to create a salt, and hash the password + salt
+        self.cur.execute("INSERT INTO tl_user (username, salted_password) VALUES (%s, %s)", (username, password))
+
+d = DatabaseService()
+d.test()
