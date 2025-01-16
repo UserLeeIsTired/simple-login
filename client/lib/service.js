@@ -3,7 +3,6 @@ export const createUser = async (userEmail, userPassword) => {
       email: userEmail,
       password: userPassword
     };
-    console.log(Config.LOCAL_ADDRESS)
     const serverUrl = '';
     try{
         fetch(serverUrl, {
