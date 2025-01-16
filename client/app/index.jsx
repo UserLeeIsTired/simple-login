@@ -10,7 +10,7 @@ const index = () => {
       <View className="items-center justify-center"> 
         <Image source={images.locked} className="w-16 h-[100px] mb-10" resizeMethod='contain'/>
         <Text className="text-2xl text-white text-center font-semibold">Welcome to simple login testing</Text>
-        <View className="items-center justify-center">
+        <View className="items-center justify-center w-full">
             <CustomButton title='Next' onPress={() => router.push('./login')}/>
         </View>
       </View>
