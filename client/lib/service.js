@@ -1,26 +1,26 @@
+import { Alert } from "react-native";
+
 export const createUser = async (userEmail, userPassword) => {
     const postData = {
       email: userEmail,
       password: userPassword
     };
     const serverUrl = '';
-    try{
-        fetch(serverUrl, {
+
+    try {
+        const response = await fetch(serverUrl, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify(postData),
-          })
-          .then(response => response.text())
-          .then(responseText => {
-            console.log(responseText); // Log the response from the server
-          })
-          .catch(error => {
-            console.error('Error:', error);
-          });
+        });
 
-    }catch(error){
-        console.log(error)
+        if (!response.ok){
+            throw new Error(await response.text());
+        }
+    } catch (error) {
+        Alert.alert('Error', error.message);
     }
-}
+};
+

@@ -4,6 +4,9 @@ import os
 
 import psycopg2
 
+import functools
+print = functools.partial(print, flush=True)
+
 
 class DatabaseService:
     def __init__(self):
@@ -29,10 +32,21 @@ class DatabaseService:
         print(records)
 
     def register_user(self, username, password):
-        # use a trigger to create a salt, and hash the password + salt
-        self.cur.execute("INSERT INTO tl_user (username, password_hash) VALUES (%s, %s)", (username, password))
-        self.conn.commit()
+        try:
+            # use a trigger to create a salt, and hash the password + salt
+            
+            self.cur.execute("INSERT INTO tl_user (username, password_hash) VALUES (%s, %s)", (username, password))
+            self.conn.commit()
 
-d = DatabaseService()
-d.register_user('test', 'password')
-d.test()
+            return True
+        except Exception as e:
+            # Log the error or handle it appropriately
+
+            print(f"An error occurred while registering user: {e}")
+
+            # Rollback the transaction if needed
+            self.conn.rollback()
+
+            return False
+
+

@@ -31,8 +31,7 @@ const SignUp = () => {
         return;
     }
 
-    await createUser(form.email, form.password);
-    
+    await createUser(form.email, form.password).catch(error => Alert.alert('Error', error));
   }
   
   return (
