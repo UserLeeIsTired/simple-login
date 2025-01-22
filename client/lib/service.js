@@ -5,7 +5,7 @@ export const createUser = async (userEmail, userPassword) => {
       email: userEmail,
       password: userPassword
     };
-    const serverUrl = '';
+    const serverUrl = 'http://10.186.237.63:8000';
 
     try {
         const response = await fetch(serverUrl, {
